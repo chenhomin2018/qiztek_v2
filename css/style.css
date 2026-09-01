@@ -1,0 +1,86 @@
+/* css\style.css */
+/* 自訂字型類別 */
+body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background-color: #0B1220;
+    color: #E6E6E6;
+    overflow-x: hidden;
+}
+
+.font-tech {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* Ambient Glow & Glassmorphism */
+.glass-panel {
+    background: rgba(17, 28, 48, 0.75);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(46, 117, 182, 0.25);
+}
+
+.glass-panel-hover {
+    transition: all 0.3s ease;
+}
+
+.glass-panel-hover:hover {
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 25px rgba(46, 117, 182, 0.25);
+    transform: translateY(-2px);
+}
+
+.text-glow {
+    text-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+}
+
+.gold-glow {
+    text-shadow: 0 0 12px rgba(191, 143, 0, 0.5);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #080D1A;
+}
+::-webkit-scrollbar-thumb {
+    background: #1F3864;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #2E75B6;
+}
+
+/* Hide elements during route transition */
+.page-section {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.page-section.active {
+    display: block;
+    opacity: 1;
+}
+
+/* 全站基礎字體微調 */
+html {
+    font-size: 18px;
+}
+
+body {
+    line-height: 1.6;
+}
+
+.text-xs {
+    font-size: 0.875rem !important;
+}
+
+.text-sm {
+    font-size: 1rem !important;
+}
+
+.text-base {
+    font-size: 1.125rem !important;
+}
