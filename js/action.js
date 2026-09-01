@@ -101,10 +101,44 @@ function initStarfield() {
     animateStarfield();
 }
 
-// DOM 載入後初始化 Lucide 圖示與背景動畫
-document.addEventListener('DOMContentLoaded', () => {
+// 主題切換功能 (深色 / 淺色)
+function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.classList.contains('dark');
+
+    if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+    } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+    }
+
+    updateThemeIcons();
+}
+
+// 更新主題圖示顯示 (太陽 / 月亮)
+function updateThemeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    const sunIcon = document.getElementById('theme-icon-sun');
+    const moonIcon = document.getElementById('theme-icon-moon');
+
+    if (!sunIcon || !moonIcon) return;
+
+    if (isDark) {
+        sunIcon.classList.add('hidden');
+        moonIcon.classList.remove('hidden');
+    } else {
+        sunIcon.classList.remove('hidden');
+        moonIcon.classList.add('hidden');
+    }
+
     if (typeof lucide !== 'undefined') {
         lucide.createIcons();
     }
-    initStarfield();
+}
+
+// 頁面載入後自動初始圖示
+document.addEventListener('DOMContentLoaded', () => {
+    updateThemeIcons();
 });

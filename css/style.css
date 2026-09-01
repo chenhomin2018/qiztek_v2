@@ -1,4 +1,45 @@
 /* css\style.css */
+
+/* 深色 (預設) 與 淺色模式背景及文字適應 */
+html:not(.dark) body {
+    background-color: #F8FAFC;
+    color: #0F172A;
+}
+
+/* 淺色模式下星空背景隱藏或降透明度 */
+html:not(.dark) #starfield {
+    opacity: 0.15;
+}
+
+/* 淺色模式下 Glass Panel 配色調整 */
+html:not(.dark) .glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(203, 213, 225, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+html:not(.dark) .glass-panel-hover:hover {
+    border-color: rgba(59, 130, 246, 0.5);
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.15);
+}
+
+/* 淺色模式下的標題與內文文字顏色修正 */
+html:not(.dark) .text-white {
+    color: #0F172A !important;
+}
+
+html:not(.dark) .text-qiz-muted {
+    color: #475569 !important;
+}
+
+html:not(.dark) .text-qiz-text {
+    color: #1E293B !important;
+}
+
+html:not(.dark) header {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+}
+
 /* 自訂字型類別 */
 body {
     font-family: 'Noto Sans TC', sans-serif;
