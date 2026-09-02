@@ -2,7 +2,7 @@
 
 /* 深色 (預設) 與 淺色模式背景及文字適應 */
 html:not(.dark) body {
-    background-color: #F8FAFC;
+    background: #F8FAFC;
     color: #0F172A;
 }
 
@@ -43,7 +43,8 @@ html:not(.dark) header {
 /* 自訂字型類別 */
 body {
     font-family: 'Noto Sans TC', sans-serif;
-    background-color: #0B1220;
+    background: linear-gradient(135deg, #0B1220 0%, #1a0f3a 35%, #0f2a47 70%, #0B1220 100%);
+    background-attachment: fixed;
     color: #E6E6E6;
     overflow-x: hidden;
 }
