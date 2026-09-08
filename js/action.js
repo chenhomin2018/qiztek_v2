@@ -1,44 +1,9 @@
 // js\action.js
 
 function navigateTo(pageId, anchorId = null) {
-    const sections = document.querySelectorAll('.page-section');
-    sections.forEach(section => {
-        section.classList.remove('active');
-    });
-
-    const targetSection = document.getElementById(`page-${pageId}`);
-    if (targetSection) {
-        targetSection.classList.add('active');
-    }
-
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.classList.remove('text-qiz-glow');
-        link.classList.add('text-qiz-muted');
-    });
-
-    const activeNav = document.getElementById(`nav-${pageId}`);
-    if (activeNav) {
-        activeNav.classList.remove('text-qiz-muted');
-        activeNav.classList.add('text-qiz-glow');
-    }
-
-    // 重新初始化 Lucide 圖示，防止動態頁面圖示遺失
-    if (typeof lucide !== 'undefined') {
-        lucide.createIcons();
-    }
-
-    // 捲動至頁面頂部或指定的錨點位置 (相容 anchor- 前綴)
-    if (anchorId) {
-        setTimeout(() => {
-            const el = document.getElementById(anchorId) || document.getElementById(`anchor-${anchorId}`);
-            if (el) {
-                el.scrollIntoView({ behavior: 'smooth' });
-            }
-        }, 100);
-    } else {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    const pageFile = pageId === 'home' ? 'index.html' : `${pageId}.html`;
+    const anchor = anchorId ? `#anchor-${anchorId}` : '';
+    window.location.href = `${pageFile}${anchor}`;
 }
 
 // 行動裝置選單切換開關
@@ -141,4 +106,5 @@ function updateThemeIcons() {
 // 頁面載入後自動初始圖示
 document.addEventListener('DOMContentLoaded', () => {
     updateThemeIcons();
+    initStarfield();
 });

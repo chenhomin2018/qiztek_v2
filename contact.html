@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>聯絡我們｜祁知科技 QizTek</title>
+    <meta name="description" content="祁知科技（QizTek）深耕軟硬體整合領域，專注於智慧製造 (MES/QMS)、進銷存整合、機器視覺檢測、物聯網設備與 AI Agent 智控等領域。">
+    <meta name="keywords" content="祁知科技, QizTek, 智慧製造, MES, QMS, 進銷存, 機器視覺, 物聯網, AI Agent, ISA-95">
+    
+    <link rel="icon" type="image/png" href="./images/logo.webp">
+    <link rel="apple-touch-icon" href="./images/logo.webp">
+
+    <meta property="og:title" content="祁知科技 QizTek｜智慧製造、QMS 品質與進銷存整合解決方案">
+    <meta property="og:description" content="專注於智慧製造、QMS品質與進銷存整合，提供物聯網設備、機器視覺與獨立 AI Agent 智控系統。">
+    <meta property="og:type" content="website">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        if (localStorage.getItem('theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+        } else {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body class="relative min-h-screen flex flex-col justify-between">
+
+    <canvas id="starfield" class="fixed top-0 left-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <header class="sticky top-0 z-50 glass-panel border-b border-qiz-tech/20 bg-qiz-bg/90">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#home" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 relative flex items-center justify-center">
+                    <img src="images/logo.webp" alt="祁知科技 Logo"  class="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold font-tech tracking-wider text-white flex items-center gap-1">
+                        祁知科技 <span class="text-qiz-glow text-sm font-normal">QizTek</span>
+                    </span>
+                    <span class="text-[10px] text-qiz-gold tracking-widest font-tech uppercase">Smart System Suite</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium">
+                <a href="#home" onclick="navigateTo('home')" id="nav-home" class="nav-link text-qiz-glow transition-colors hover:text-white">首頁 Home</a>
+                <a href="#about" onclick="navigateTo('about')" id="nav-about" class="nav-link text-qiz-muted transition-colors hover:text-white">關於我們 About</a>
+                <a href="#solutions" onclick="navigateTo('solutions')" id="nav-solutions" class="nav-link text-qiz-muted transition-colors hover:text-white">解決方案 Solutions</a>
+                <a href="#resources" onclick="navigateTo('resources')" id="nav-resources" class="nav-link text-qiz-muted transition-colors hover:text-white">技術資源 Resources</a>
+                <a href="#contact" onclick="navigateTo('contact')" id="nav-contact" class="nav-link text-qiz-muted transition-colors hover:text-white">聯絡我們 Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-3">
+                <button id="theme-toggle-btn" onclick="toggleTheme()" class="p-2 text-qiz-muted hover:text-white glass-panel rounded-lg border border-qiz-tech/30 transition-all flex items-center justify-center" title="切換深色/淺色模式">
+                    <i data-lucide="sun" id="theme-icon-sun" class="w-5 h-5 hidden text-amber-400"></i>
+                    <i data-lucide="moon" id="theme-icon-moon" class="w-5 h-5 text-qiz-glow"></i>
+                </button>
+            </div>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-qiz-tech/20 px-4 pt-4 pb-6 space-y-3">
+            <a href="#home" onclick="navigateTo('home'); toggleMobileMenu();" class="block px-3 py-2 rounded-md text-base font-medium text-white hover:bg-qiz-primary/50">首頁 Home</a>
+            <a href="#about" onclick="navigateTo('about'); toggleMobileMenu();" class="block px-3 py-2 rounded-md text-base font-medium text-qiz-muted hover:bg-qiz-primary/50 hover:text-white">關於我們 About</a>
+            <a href="#solutions" onclick="navigateTo('solutions'); toggleMobileMenu();" class="block px-3 py-2 rounded-md text-base font-medium text-qiz-muted hover:bg-qiz-primary/50 hover:text-white">解決方案 Solutions</a>
+            <a href="#resources" onclick="navigateTo('resources'); toggleMobileMenu();" class="block px-3 py-2 rounded-md text-base font-medium text-qiz-muted hover:bg-qiz-primary/50 hover:text-white">技術資源 Resources</a>
+            <a href="#contact" onclick="navigateTo('contact'); toggleMobileMenu();" class="block px-3 py-2 rounded-md text-base font-medium text-qiz-muted hover:bg-qiz-primary/50 hover:text-white">聯絡我們 Contact</a>
+        </div>
+    </header>
+
+    <main class="relative z-10 flex-grow">
+        <section id="page-contact" class="page-section active">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h1 class="text-3xl sm:text-5xl font-bold font-tech text-white">CONTACT US</h1>
+                    <p class="text-qiz-glow text-lg mt-2">聯絡與諮詢窗口</p>
+                    <p class="text-qiz-muted text-sm mt-3">歡迎透過以下方式來信，我們的專業團隊將第一時間為您服務。</p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-8">
+                    <!-- Company Info -->
+                    <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-qiz-tech/30 space-y-8">
+                        <h3 class="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                            <i data-lucide="building-2" class="w-6 h-6 text-qiz-glow"></i> 企業基本資訊
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-qiz-primary/50 text-qiz-glow flex items-center justify-center shrink-0 border border-qiz-tech/40">
+                                    <i data-lucide="building" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-qiz-muted">公司名稱</span>
+                                    <p class="text-lg font-bold text-white mt-1">祁知科技 (QizTek)</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-qiz-primary/50 text-qiz-gold flex items-center justify-center shrink-0 border border-qiz-gold/40">
+                                    <i data-lucide="file-text" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-qiz-muted">統一編號 / 代表人</span>
+                                    <p class="text-lg font-bold text-white mt-1">54893689 ｜ 陳宏銘 代表人</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-qiz-primary/50 text-emerald-400 flex items-center justify-center shrink-0 border border-emerald-400/40">
+                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-qiz-muted">官方聯絡信箱</span>
+                                    <p class="text-lg font-bold text-white mt-1 hover:text-qiz-glow transition-colors">
+                                        <a href="mailto:qiztek.sales@gmail.com">qiztek.sales@gmail.com</a>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-12 h-12 rounded-lg bg-qiz-primary/50 text-cyan-400 flex items-center justify-center shrink-0 border border-cyan-400/40">
+                                    <i data-lucide="map-pin" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <span class="text-sm text-qiz-muted">公司地址</span>
+                                    <p class="text-lg font-bold text-white mt-1">新竹市東區金山北二街62號1F</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="relative z-10 glass-panel border-t border-qiz-tech/30 bg-qiz-dark/90 mt-20 text-qiz-muted text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <!-- Col 1 -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2">
+                        <span class="text-lg font-bold font-tech text-white">祁知科技 QizTek</span>
+                    </div>
+                    <p class="text-xs text-qiz-muted leading-relaxed">
+                        貫穿 OT 至 IT 的全方位智慧製造與自動化生態系專業夥伴。
+                    </p>
+                    <p class="text-xs text-qiz-gold font-tech">統一編號：54893689</p>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">網站導覽</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home" onclick="navigateTo('home')" class="hover:text-white transition-colors">首頁 Home</a></li>
+                        <li><a href="#about" onclick="navigateTo('about')" class="hover:text-white transition-colors">關於我們 About</a></li>
+                        <li><a href="#solutions" onclick="navigateTo('solutions')" class="hover:text-white transition-colors">解決方案 Solutions</a></li>
+                        <li><a href="#resources" onclick="navigateTo('resources')" class="hover:text-white transition-colors">技術資源 Resources</a></li>
+                        <li><a href="#contact" onclick="navigateTo('contact')" class="hover:text-white transition-colors">聯絡我們 Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">解決方案範疇</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#solutions" onclick="navigateTo('solutions', 'iot')" class="hover:text-white transition-colors">物聯網與邊緣控制</a></li>
+                        <li><a href="#solutions" onclick="navigateTo('solutions', 'vision')" class="hover:text-white transition-colors">機器視覺自動化檢測</a></li>
+                        <li><a href="#solutions" onclick="navigateTo('solutions', 'eis')" class="hover:text-white transition-colors">智慧企業資訊系統</a></li>
+                        <li><a href="#solutions" onclick="navigateTo('solutions', 'ai-agent')" class="hover:text-white transition-colors">AI Agent 智慧代理人</a></li>
+                        <li><a href="#solutions" onclick="navigateTo('solutions', 'isa95')" class="hover:text-white transition-colors">IEC 62264 (ISA-95) 架構</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4 -->
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">聯絡資訊</h4>
+                    <p class="mb-2">新竹市東區金山北二街62號1F</p>
+                    <p class="mb-2 text-qiz-glow">qiztek.sales@gmail.com</p>
+                    
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-qiz-tech/20 text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+                <p>© 2026 祁知科技 QizTek (54893689). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./js/action.js"></script>
+</body>
+</html>
