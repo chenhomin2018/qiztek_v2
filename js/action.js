@@ -6,6 +6,32 @@ function navigateTo(pageId, anchorId = null) {
     window.location.href = `${pageFile}${anchor}`;
 }
 
+function normalizeNavigation() {
+    const pageMap = {
+        home: 'index.html',
+        about: 'about.html',
+        solutions: 'solutions.html',
+        resources: 'resources.html',
+        contact: 'contact.html'
+    };
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
+    document.querySelectorAll('a[onclick*="navigateTo"]').forEach(link => {
+        const match = link.getAttribute('onclick').match(/navigateTo\('([^']+)'(?:,\s*'([^']+)')?/);
+        if (!match || !pageMap[match[1]]) return;
+
+        const anchor = match[2] ? `#anchor-${match[2]}` : '';
+        link.href = `${pageMap[match[1]]}${anchor}`;
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        const pageId = link.id.replace('nav-', '');
+        const isCurrent = pageMap[pageId] === currentPage;
+        link.classList.toggle('text-qiz-glow', isCurrent);
+        link.classList.toggle('text-qiz-muted', !isCurrent);
+    });
+}
+
 // 行動裝置選單切換開關
 function toggleMobileMenu() {
     const menu = document.getElementById('mobile-menu');
@@ -105,6 +131,7 @@ function updateThemeIcons() {
 
 // 頁面載入後自動初始圖示
 document.addEventListener('DOMContentLoaded', () => {
+    normalizeNavigation();
     updateThemeIcons();
     initStarfield();
 });
